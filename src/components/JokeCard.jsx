@@ -1,4 +1,6 @@
-function JokeCard() {
+function JokeCard({ joke, handleNewJoke }) {
+  if (!joke) return null;
+
   return (
     <div className="mt-10 mb-6">
 
@@ -19,21 +21,27 @@ function JokeCard() {
               </span>
             </h2>
 
-            <div className="bg-white rounded-2xl p-4 mt-4 shadow-sm">
+            {/* Joke Box */}
+            <div className="bg-white rounded-2xl p-4 mt-4 shadow-sm w-[420px]">
+
               <p className="font-semibold text-lg">
-                Why did the sushi go to school?
+                {joke.setup}
               </p>
 
               <p className="text-gray-600 mt-2">
-                Because it wanted to become a little smarter! 🍣😄
+                {joke.punchline}
               </p>
+
             </div>
           </div>
 
         </div>
 
         {/* Button */}
-        <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-4 rounded-2xl font-medium">
+        <button
+          onClick={handleNewJoke}
+          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-4 rounded-2xl font-medium"
+        >
           🔄 New Joke
         </button>
 

@@ -22,6 +22,12 @@ function Dashboard() {
   const [time, setTime] = useState(null);
   const [song, setSong] = useState(null);
   const [food, setFood] = useState(null);
+  const [joke, setJoke] = useState(null);
+
+  const handleNewJoke = async () => {
+    const jokeData = await getJoke();
+    setJoke(jokeData);
+  };
 
   const handleSearch = async () => {
     if (!search.trim()) return;
@@ -31,11 +37,13 @@ function Dashboard() {
       const weatherData = await getWeather(search);
       const timeData = getTimeData();
       const songData = await getSong(search);
+      const jokeData = await getJoke();
 
       setCountry(countryData);
       setWeather(weatherData);
       setTime(timeData);
       setSong(songData);
+      setJoke(jokeData);
       setFood({
 });
 
@@ -105,7 +113,9 @@ function Dashboard() {
 
             {/* Joke Card Footer */}
             <div className="mt-8">
-              <JokeCard />
+              <JokeCard
+              joke={joke}
+    handleNewJoke={handleNewJoke} />
             </div>
 
           </div>
